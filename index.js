@@ -13,6 +13,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
 app.use("/items", itemRoutes);
+app.get("/", (req, res) => {
+  res.redirect("/items");
+});
 
 app.listen(3000, () => {
   console.log("Serving on port 3000.");
