@@ -1,5 +1,20 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const fs = require('fs');
+const path = require('path');
+
+const filePath = path.join(__dirname, `..`,`/public/img/`, `default-image.txt`);
+
+let defaultImage = '';
+
+fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+        console.error('Error reading the file:', err);
+        return;
+    }
+    // The content of the file as a string
+    defaultImage = data;
+});
 
 const itemSchema = new Schema({
     name: {
@@ -28,13 +43,17 @@ const itemSchema = new Schema({
     },
     imageUrl: {
         type: String,
-        default: 'https://media.istockphoto.com/id/1180410208/vector/landscape-image-gallery-with-the-photos-stack-up.jpg?s=612x612&w=0&k=20&c=G21-jgMQruADLPDBk7Sf1vVvCEtPiJD3Rf39AeB95yI='
+        default: defaultImage
     },
     lastUpdatedBy: {
         type: String,
         default: 'no-user'
+    },
+    status: {
+        type: String,
+        default: 'Active'
     }
 
 });
 
-module.exports = mongoose.model('item', itemSchema);
+module.exports = mongoose.model('Item', itemSchema);

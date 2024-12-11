@@ -13,12 +13,13 @@ mongoose.connect('mongodb://127.0.0.1:27017/item-db')
 
 //Root
 exports.root = (req, res) => {
-    res.redirect('/items');
+    console.log("Accessing the localhost:3000/...")
+    res.redirect('items');
 }
 
 //Home/List of all items
 exports.list = async(req, res) => {
     const items = await Item.find({});
-    console.log(items);
-    // res.render('index', {items});
+    // console.log(items);
+    res.render('index', {items});
 }
