@@ -5,16 +5,16 @@ const path = require('path');
 
 const filePath = path.join(__dirname, `..`,`/public/img/`, `default-image.txt`);
 
-let defaultImage = '';
-
-fs.readFile(filePath, 'utf8', (err, data) => {
-    if (err) {
-        console.error('Error reading the file:', err);
-        return;
+const getImageDefault = () => {
+    let defaultImage = '';
+    try {
+        const imageCode = fs.readFileSync(filePath, 'utf8');
+        defaultImage = imageCode.trim();
+    }catch(e){
+        console.error(`Error Message: ${e}`)
     }
-    // The content of the file as a string
-    defaultImage = data;
-});
+    return defaultImage;
+}
 
 const itemSchema = new Schema({
     name: {
@@ -41,9 +41,9 @@ const itemSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    imageUrl: {
+    imageCode: {
         type: String,
-        default: defaultImage
+        default: getImageDefault()
     },
     lastUpdatedBy: {
         type: String,

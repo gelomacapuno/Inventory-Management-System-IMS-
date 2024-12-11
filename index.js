@@ -14,4 +14,5 @@ app.use('/', itemRoutes);
 
 app.listen(3000, () => {
     console.log("Serving on port 3000.");
+    console.log("Open `http://localhost:3000`");
 })
