@@ -47,7 +47,7 @@ const itemSchema = new Schema({
     },
     lastUpdatedBy: {
         type: String,
-        default: 'no-user'
+        default: 'SYSTEM'
     },
     status: {
         type: String,

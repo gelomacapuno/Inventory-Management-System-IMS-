@@ -1,0 +1,20 @@
+<div id="sidebar">
+  <div class="sidebar-header">
+    <h4 style="font-weight: bold; font-size: 24px">
+      Agri<span style="color: #72bf44">Kultura</span>
+    </h4>
+  </div>
+  <ul>
+    <li class="nohover">
+      <p style="font-weight: bold; font-size: 12px">GENERAL</p>
+    </li>
+    <li class="<%= routeName == '/items'? 'active' : '' %>">
+      <a href="/items"><i class="fas fa-home"></i> PRODUCT MANAGEMENT</a>
+    </li>
+    <li class="<%= routeName == '/items/new-item'? 'active' : '' %>">
+      <a href="/items/new-item"
+        ><i class="fas fa-info-circle"></i> ADD NEW PRODUCT</a
+      >
+    </li>
+  </ul>
+</div>

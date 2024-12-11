@@ -1,0 +1,76 @@
+<%- include('partials/head') %>
+<title>IMS | Update</title>
+  <style>
+    .required:after{
+            content: "*";
+            color: red;
+            margin-left: 5px;
+        }
+  </style>
+</head>
+<body>
+  <%- include('partials/sidebar') %>
+  <div id="content" class="container-fluid">
+    <div class="container mt-5">
+      <h2>EDIT PRODUCT</h2>
+
+        <form method="POST" action="/items/<%= item._id %>?_method=PUT" enctype="multipart/form-data">
+            <div class="row mb-3">
+              <label for="name" class="col-sm-2 col-form-label required">Name</label>
+              <div class="col-sm-10">
+                <input type="text" name="name" class="form-control" id="name" value="<%= item.name %>" required>
+              </div>
+            </div>
+            <div class="row mb-3">
+            <label for="category" class="col-sm-2 col-form-label required">Category</label>
+            <div class="col-sm-10">
+            <select id="category" name="category"  class="form-select" aria-label="Default select" required>
+            <option <%= item.category === "Category1" ? 'selected' : '' %> value="Category1">Category1</option>
+            <option <%= item.category === "Category2" ? 'selected' : '' %>  value="Category2">Category2</option>
+            <option <%= item.category === "Category3" ? 'selected' : '' %>  value="Category3">Category3</option>
+          </select>
+            </div>
+          </div>
+            <div class="row mb-3">
+              <label for="description" class="col-sm-2 col-form-label">Description</label>
+              <div class="col-sm-10">
+              <textarea class="form-control" id="description" name="description" rows="3"><%= item.description %></textarea>
+              </div>
+            </div>
+            <div class="row mb-3">
+            <label for="quantity" class="col-sm-2 col-form-label">Quantity</label>
+            <div class="col-sm-10">
+              <input type="number" value="<%= item.quantity %>" name="quantity" class="form-control" id="quantity">
+            </div>
+          </div>
+          <div class="row mb-3">
+          <label for="price" class="col-sm-2 col-form-label required">Price</label>
+          <div class="col-sm-10">
+          <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">PHP</span>
+          </div>
+          <input type="text" name="price" value="<%= item.price %>" class="form-control" aria-label="Amount (to the nearest peso)" required>
+          <div class="input-group-append">
+            <span class="input-group-text">.00</span>
+          </div>
+        </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="imageCode">Upload your new image. (skip this step if not)</label>
+          <input type="file" class="form-control" name="file" id="imageCode" />
+        </div>
+      
+        <div class="mt-2 d-flex gap-3">
+          <a href="/items">
+              <button type="button" class="btn btn-secondary btn-lg">Cancel</button>
+          </a>
+              <button type="submit" class="btn btn-success btn-lg">Update</button>
+
+      </div>
+          </form>
+    </div>
+  </div>
+
+  <%- include('partials/footer') %>

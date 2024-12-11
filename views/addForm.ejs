@@ -1,0 +1,115 @@
+<%- include('partials/head') %>
+<title>IMS | Create</title>
+  <style>
+    .required:after {
+      content: "*";
+      color: red;
+      margin-left: 5px;
+    }
+  </style>
+</head>
+<body>
+  <%- include('partials/sidebar') %>
+  <div id="content" class="container-fluid">
+    <div class="container mt-5">
+      <h2>ADD NEW PRODUCT</h2>
+
+      <form method="POST" action="/items" enctype="multipart/form-data">
+        <div class="row">
+          <div class="col">
+                <ul class="list-group list-group-vertical-sm mb-4">
+                  <p class="required" style="color: #72BF44; font-weight: bold; font-size: 12px !important;">
+                    ITEM NAME
+                  </p>
+                  <input
+                  type="text"
+                  name="name"
+                  class="form-control"
+                  id="name"
+                  required
+                />
+                </ul>
+                <ul class="list-group list-group-vertical-sm mb-4">
+                  <p class="required" style="color: #72BF44; font-weight: bold; font-size: 12px !important;">
+                    CATEGORY
+                  </p>
+
+                    <select
+                    id="category"
+                    name="category"
+                    class="form-select"
+                    aria-label="Default select"
+                    required
+                  >
+                    <option selected>Open this select menu</option>
+                    <option value="Seeds">SEEDS</option>
+                    <option value="Soil">SOIL</option>
+                    <option value="Tools">TOOLS</option>
+                  </select>
+
+                </ul>
+                <ul class="list-group list-group-vertical-sm mb-4">
+                  <p style="color: #72BF44; font-weight: bold; font-size: 12px !important;">
+                    DESCRIPTION
+                  </p>
+                      <textarea
+                        class="form-control"
+                        id="description"
+                        name="description"
+                        rows="3"
+                      ></textarea>
+                </ul>
+                <ul class="list-group list-group-vertical-sm mb-4">
+                  <p style="color: #72BF44; font-weight: bold; font-size: 12px !important;">
+                    QUANTITY
+                  </p>
+                  <input
+                  type="number"
+                  name="quantity"
+                  class="form-control"
+                  id="quantity"
+                />
+                </ul>
+                <ul class="list-group list-group-vertical-sm mb-4">
+                  <p class="required" style="color: #72BF44; font-weight: bold; font-size: 12px !important;">
+
+                    PRICE
+                  </p>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">PHP</span>
+                    </div>
+                    <input
+                      type="text"
+                      name="price"
+                      class="form-control"
+                      aria-label="Amount (to the nearest peso)"
+                      required
+                    />
+                    <div class="input-group-append">
+                      <span class="input-group-text">.00</span>
+                    </div>
+                  </div>
+                </ul>
+                <ul class="list-group list-group-vertical-sm mb-4">
+                  <p style="color: #72BF44; font-weight: bold; font-size: 12px !important;">
+                    IMAGE
+                  </p>
+                  <input type="file" class="form-control" name="file" id="imageCode" />
+                </ul>
+
+              <div class="mt-2 d-flex gap-3">
+                  <button type="submit" style="background-color:#242834; width: 200px; height: 48px;" class="btn btn-primary btn-lg">Submit Item</button>
+                  <a href="/items">
+                      <button type="button" class="btn btn-secondary btn-lg">Back</button>
+                  </a>
+              </div>
+            </div>    
+          </form>
+
+      </div> 
+    </div>
+  </div>
+
+  <%- include('partials/footer') %>
+</body>

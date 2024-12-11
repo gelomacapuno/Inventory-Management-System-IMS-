@@ -1,13 +1,80 @@
 <%- include('partials/head') %>
-<body>
-    <%- include('partials/navbar') %>
-    <div class="container">
-        <div class="jumbotron">
-            <h1>Hello, world!</h1>
-            <p>...</p>
-            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
-        </div>
-    </div>
+<title>IMS | Home</title>
+<style>
+  .custom-button:hover {
+    background-color: #72bf44 !important;
+  }
+  .outOfStock{
+    border:1px solid red;
 
-</body>
-</html>
+  }
+
+  .stock{
+    border:1px solid rgba(0, 0, 0, 0.137);
+  }
+</style>
+</head>
+<body>
+  <%- include('partials/sidebar') %>
+  <div id="content" class="container-fluid">
+    <div class="container mt-5">
+      <div class="container mb-4">
+        <div class="row">
+          <div class="col-md-3"></div>
+          <div class="col-md-3"></div>
+          <div class="col-md-3 offset-md-3">
+            <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search for..." aria-label="Search">
+        <button class="btn btn-outline-success custom-button" type="submit">Search</button>
+      </form>  
+          </div>
+        
+        </div>
+        
+      </div>
+      
+      <% if (success != '') { %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong><%= success %></strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <% } %>
+      
+        <div style="max-width: 1500px;" class=" d-flex flex-wrap gap-5">
+          <div class="container mt-5 mb-1">
+            <p style="color: #242834; font-weight: bold; font-size: 12px !important;">PRODUCT MANAGEMENT</p>
+          </div>
+            <% items.forEach(item => { %>
+            <div class="justify-content-center align-items-center  <%= item.quantity == 0? "outOfStock": "stock" %>" style="  display:flex; flex-direction:column;border-radius:  4px; width: 232px; height: 350px; padding: 20px;margin-top: -20px;">
+                <img src="data:image/png;base64,<%= item.imageCode %>" style="width: 185px !important; height: 229px !important; margin-top: 25px;" alt="...">
+                <div style="width: 100%; margin-top: 10px;">
+                  <p style="font-size: 16; font-weight: bold; margin: 0;"><%= item.name %></p>
+                <% if (item.category == "Seeds") { %>
+                  <span style="background-color: #3E7020 !important;color: #E2E1EE !important;" class="badge text-bg-success">SEEDS</span>
+                  <% } else if (item.category == "Soil") { %>
+                    <span style="background-color: #A3471C !important; color: #E2E1EE !important;"  class="badge text-bg-danger">SOIL</span>
+                    
+                    <% } else { %>
+                    <span style="background-color: #D3B20B !important; color: #E2E1EE !important;"  class="badge text-bg-warning">TOOLS</span>
+                      
+                      <% } %>
+                  <p style="font-size: 12px !important; margin-bottom: 0%; ">Price: Php<%= item.price %>.00</p>
+                  <p style="font-size: 12px !important; margin-bottom: 0%;">Stock:<%= item.quantity %></p>
+                  <div style="display: flex; justify-content: center; align-items: center;margin-bottom: 25px;">
+                    <a href='/items/<%= item._id %>'>
+                    <button type="button" style="width:148px; height: 38px; border-radius:  4px;background-color:  #242834; color: white;">View Item</button>
+                  </a>
+                  </div>
+                  
+                </div>
+                
+                  
+              </div>
+        <% }) %>
+        </div>
+        
+    </div>
+  </div>
+
+
+  <%- include('partials/footer') %>
