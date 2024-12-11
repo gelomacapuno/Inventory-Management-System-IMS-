@@ -16,9 +16,20 @@ let routeName = "";
 exports.list = async (req, res) => {
   routeName = req.originalUrl;
   let success = req.query.success;
+  let searchText = req.query.search;
   success = success === undefined ? "" : success;
-  const items = await Item.find({ status: "Active" });
-  res.render("index", { items, success, routeName });
+  if (searchText) {
+    const items = await Item.find({
+      status: "Active",
+      name: { $regex: searchText, $options: "i" },
+    });
+    res.render("index", { items, success, routeName });
+  } else {
+    const items = await Item.find({
+      status: "Active",
+    });
+    res.render("index", { items, success, routeName });
+  }
 };
 
 //Show specific
